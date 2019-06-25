@@ -25,3 +25,13 @@ tibble(
   quantidade = num_votos
 ) %>% 
   write_csv("votos.csv", append = TRUE)
+
+votos_datalhados <- resp %>% 
+  read_html() %>% 
+  html_table() %>% 
+  magrittr::extract2(1) %>% 
+  magrittr::extract(1:513, -1)
+
+votos_datalhados %>% 
+  write_csv("votos_detalhados.csv", append = TRUE)
+
